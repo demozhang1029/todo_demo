@@ -1,0 +1,11 @@
+{
+  "name": "todos_demo",
+  "version": "1.0.0",
+  "description": "1. use original html5 & js to create todo list. 2. use react to refactor todo list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -w"
+  },
+  "author": "Shane",
+  "license": "ISC"
+}
