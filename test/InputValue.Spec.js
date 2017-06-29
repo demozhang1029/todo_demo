@@ -24,10 +24,22 @@ describe('Input Value', () => {
     expect(wrapper.find('button')).to.have.length(1);
   });
 
-  it('should updateValue be triggered when add button be clicked', () => {
+  it('should updateValue with input value when button be clicked', () => {
+    const givenValue = 'Test Text';
+    wrapper.find('input').simulate('change', {target: {value: givenValue}});
+
     wrapper.find('button').simulate('click');
 
-    expect(updateValueSpy.called).to.be.true;
+    expect(updateValueSpy.calledWith(givenValue)).to.be.true;
+  });
+
+  it('should clean input value when button be clicked', () => {
+    wrapper.setState({value: 'Some value'});
+    expect(wrapper.state().value).to.not.equal(undefined);
+
+    wrapper.find('button').simulate('click');
+
+    expect(wrapper.state().value).to.equal(undefined);
   });
 
 });
