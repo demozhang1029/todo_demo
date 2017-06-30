@@ -28,10 +28,26 @@ describe('Todo List', () => {
   });
 
   it('should hide todo when delete icon be clicked', () => {
-    expect(wrapper.find('span').at(0).parent().props().style).to.be.undefined;
+    expect(wrapper.find('span').at(0).parent().props().style.display).to.be.undefined;
     wrapper.find('span').at(0).simulate('click');
 
     expect(wrapper.find('span').at(0).parent().props().style.display).to.equal('none');
+  });
+
+  it('should make item textDecorationLine style as line-through when click item text', () => {
+    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('none');
+    wrapper.find('p').at(0).simulate('click');
+
+    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('line-through');
+  });
+
+  it('should make item textDecorationLine style as none when click item text twice', () => {
+    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('none');
+
+    wrapper.find('p').at(0).simulate('click');
+    wrapper.find('p').at(0).simulate('click');
+
+    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('none');
   });
 
 });

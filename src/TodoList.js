@@ -9,7 +9,7 @@ class TodoList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {hidedIndexs: []};
+    this.state = {hidedIndexs: [], completedIndexs:[]};
   }
 
   removeItem(index) {
@@ -17,21 +17,33 @@ class TodoList extends Component {
     this.setState({hidedIndexs: this.state.hidedIndexs});
   }
 
+  switchCompletedStatus(index) {
+    const completedIndexs = this.state.completedIndexs;
+    if (!completedIndexs.includes(index))
+      completedIndexs.push(index);
+    else
+      _.remove(completedIndexs, (v) => v === index);
+    this.setState({completedIndexs});
+  }
+
+  itemStyle(index) {
+    return {
+      display: this.state.hidedIndexs.includes(index) ? 'none' : undefined,
+      textDecorationLine: this.state.completedIndexs.includes(index) ? 'line-through' : 'none',
+    }
+  }
+
   render() {
-    const isHided = (index) => {
-      return this.state.hidedIndexs.includes(index);
-    };
     return (
       <ul>{this.props.todos.map(
         (todo, index) =>
-          <li key={index} style={isHided(index) ? {display: 'none'} : undefined}>
-            <p>{todo.text}</p>
+          <li key={index} style={this.itemStyle(index)}>
+            <p onClick={() => this.switchCompletedStatus(index)}>{todo.text}</p>
             <span onClick={() => this.removeItem(index)}> x</span>
           </li>
       )}</ul>
     );
   }
-
 }
 
 TodoList.propTypes = {
