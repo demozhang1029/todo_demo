@@ -19,8 +19,8 @@ describe('Todo List', () => {
   it('should render todo list when given todos', () => {
     expect(wrapper.find('ul')).to.have.length(1);
     expect(wrapper.find('li')).to.have.length(givenTodos.length);
-    expect(wrapper.find('p').at(0).text()).to.equal(givenTodos[0].text);
-    expect(wrapper.find('p').at(1).text()).to.equal(givenTodos[1].text);
+    expect(wrapper.find('b').at(0).text()).to.equal(givenTodos[0].text);
+    expect(wrapper.find('b').at(1).text()).to.equal(givenTodos[1].text);
   });
 
   it('should render delete button when given todos', () => {
@@ -35,19 +35,19 @@ describe('Todo List', () => {
   });
 
   it('should make item textDecorationLine style as line-through when click item text', () => {
-    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('none');
-    wrapper.find('p').at(0).simulate('click');
+    expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('none');
+    wrapper.find('b').at(0).simulate('click');
 
-    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('line-through');
+    expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('line-through');
   });
 
   it('should make item textDecorationLine style as none when click item text twice', () => {
-    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('none');
+    expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('none');
 
-    wrapper.find('p').at(0).simulate('click');
-    wrapper.find('p').at(0).simulate('click');
+    wrapper.find('b').at(0).simulate('click');
+    wrapper.find('b').at(0).simulate('click');
 
-    expect(wrapper.find('p').at(0).parent().props().style.textDecorationLine).to.equal('none');
+    expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('none');
   });
 
 });

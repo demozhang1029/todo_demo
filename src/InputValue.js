@@ -8,22 +8,23 @@ class InputValue extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: undefined};
+    this.state = {value: ''};
   }
 
   updateValue() {
     if (_.isEmpty(this.state.value))
       return;
     this.props.updateValue(this.state.value);
-    this.setState({value: undefined});
+    this.setState({value: ''});
   }
 
   render() {
     return (
       <div>
         <input type="text" placeholder="Add todo item... ..."
-               onChange={(e) => this.setState({value: e.target.value})}/>
-        <button onClick={() => this.updateValue()}>Add</button>
+               onChange={(e) => this.setState({value: e.target.value})}
+               value={this.state.value}/>
+        <button onClick={() => this.updateValue()}>+</button>
       </div>
     );
   }

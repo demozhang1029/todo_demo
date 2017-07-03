@@ -38,7 +38,7 @@ class TodoList extends Component {
       <ul>{this.props.todos.map(
         (todo, index) =>
           <li key={index} style={this.itemStyle(index)}>
-            <p onClick={() => this.switchCompletedStatus(index)}>{todo.text}</p>
+            <b onClick={() => this.switchCompletedStatus(index)}>{todo.text}</b>
             <span onClick={() => this.removeItem(index)}> x</span>
           </li>
       )}</ul>

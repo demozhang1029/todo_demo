@@ -35,11 +35,11 @@ describe('Input Value', () => {
 
   it('should clean input value when button be clicked', () => {
     wrapper.setState({value: 'Some value'});
-    expect(wrapper.state().value).to.not.equal(undefined);
+    expect(wrapper.state().value).to.not.equal('');
 
     wrapper.find('button').simulate('click');
 
-    expect(wrapper.state().value).to.equal(undefined);
+    expect(wrapper.state().value).to.equal('');
   });
 
 });

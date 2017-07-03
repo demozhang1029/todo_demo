@@ -2,6 +2,15 @@
  * Created by xinzhang on 6/27/17.
  */
 
+import React from 'react';
+import ReactDom from 'react-dom';
+import App from './App';
+
+ReactDom.render(
+  <App/>,
+  document.getElementById('root')
+);
+
 
 function loadPage() {
   addDeleteButtonToTodoList();
