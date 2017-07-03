@@ -21,9 +21,9 @@ class TodoList extends Component {
     this.setState({completedIndexs});
   }
 
-  itemStyle(index) {
+  itemStyle(todo) {
     return {
-      textDecorationLine: this.state.completedIndexs.includes(index) ? 'line-through' : 'none',
+      textDecorationLine: todo.completed ? 'line-through' : 'none',
     }
   }
 
@@ -31,8 +31,8 @@ class TodoList extends Component {
     return (
       <ul>{this.props.todos.map(
         (todo, index) =>
-          <li key={index} style={this.itemStyle(index)}>
-            <b onClick={() => this.switchCompletedStatus(index)}>{todo.text}</b>
+          <li key={index} style={this.itemStyle(todo)}>
+            <b onClick={() => this.props.toggleItem(index)}>{todo.text}</b>
             <span onClick={() => this.props.removeItem(index)}> x</span>
           </li>
       )}</ul>
@@ -43,6 +43,7 @@ class TodoList extends Component {
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired,
   removeItem: PropTypes.func.isRequired,
+  toggleItem: PropTypes.func.isRequired,
 };
 
 TodoList.defaultProps = {

@@ -23,11 +23,18 @@ class App extends Component {
     this.setState({todos: this.state.todos});
   }
 
+  toggleItem(index) {
+    this.state.todos[index].completed = this.state.todos[index].completed ? undefined : true;
+    this.setState({todos: this.state.todos});
+  }
+
   render() {
     return (
       <div>
         <InputValue updateValue={(value) => this.addItem(value)}/>
-        <TodoList todos={this.state.todos} removeItem={(index) => this.removeItem(index)}/>
+        <TodoList todos={this.state.todos}
+                  removeItem={(index) => this.removeItem(index)}
+                  toggleItem={(index) => this.toggleItem(index)}/>
       </div>
     );
   }

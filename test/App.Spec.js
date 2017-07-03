@@ -38,4 +38,25 @@ describe('App', () => {
     expect(wrapper.state().todos[0].text).to.equal('content_2');
   });
 
+  it('should make todo item completed when click item once', () => {
+    const todos = [{text:'content_1'}, {text: 'content_2'}, {text: 'content_3'}];
+    wrapper.setState({todos});
+    expect(wrapper.state().todos[0].completed).to.equal(undefined);
+
+    wrapper.instance().toggleItem(0);
+
+    expect(wrapper.state().todos[0].completed).to.equal(true);
+  });
+
+  it('should make todo item un-completed when click item twice', () => {
+    const todos = [{text:'content_1'}, {text: 'content_2'}, {text: 'content_3'}];
+    wrapper.setState({todos});
+    expect(wrapper.state().todos[0].completed).to.equal(undefined);
+
+    wrapper.instance().toggleItem(0);
+    wrapper.instance().toggleItem(0);
+
+    expect(wrapper.state().todos[0].completed).to.equal(undefined);
+  });
+
 });

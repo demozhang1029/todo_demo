@@ -10,13 +10,21 @@ import sinon from 'sinon';
 
 describe('Todo List', () => {
 
-  let givenTodos = [{text: '123'}, {text: 'abc'}];
+  let givenTodos = [{text: '123', completed: true}, {text: 'abc'}];
   let removeItemSpy;
+  let toggleItemSpy;
   let wrapper;
 
   beforeEach(() => {
     removeItemSpy = sinon.spy();
-    wrapper = shallow(<TodoList todos={givenTodos} removeItem={removeItemSpy} />);
+    toggleItemSpy = sinon.spy();
+    wrapper = shallow(
+      <TodoList
+        todos={givenTodos}
+        removeItem={removeItemSpy}
+        toggleItem={toggleItemSpy}
+      />
+    );
   });
 
   it('should render todo list when given todos', () => {
@@ -36,20 +44,18 @@ describe('Todo List', () => {
     expect(removeItemSpy.calledOnce).to.be.true;
   });
 
-  it('should make item textDecorationLine style as line-through when click item text', () => {
-    expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('none');
-    wrapper.find('b').at(0).simulate('click');
-
+  it('should make item textDecorationLine style as line-through when item is completed', () => {
     expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('line-through');
   });
 
-  it('should make item textDecorationLine style as none when click item text twice', () => {
-    expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('none');
+  it('should make item textDecorationLine style as none when item is un-completed', () => {
+    expect(wrapper.find('b').at(1).parent().props().style.textDecorationLine).to.equal('none');
+  });
 
-    wrapper.find('b').at(0).simulate('click');
+  it('should toggle todo be triggered when item be clicked', () => {
     wrapper.find('b').at(0).simulate('click');
 
-    expect(wrapper.find('b').at(0).parent().props().style.textDecorationLine).to.equal('none');
+    expect(toggleItemSpy.calledOnce).to.be.true;
   });
 
 });
