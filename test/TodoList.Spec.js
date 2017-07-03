@@ -6,14 +6,17 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
 import TodoList from '../src/TodoList';
+import sinon from 'sinon';
 
 describe('Todo List', () => {
 
   let givenTodos = [{text: '123'}, {text: 'abc'}];
+  let removeItemSpy;
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<TodoList todos={givenTodos}/>);
+    removeItemSpy = sinon.spy();
+    wrapper = shallow(<TodoList todos={givenTodos} removeItem={removeItemSpy} />);
   });
 
   it('should render todo list when given todos', () => {
@@ -27,11 +30,10 @@ describe('Todo List', () => {
     expect(wrapper.find('span')).to.have.length(givenTodos.length);
   });
 
-  it('should hide todo when delete icon be clicked', () => {
-    expect(wrapper.find('span').at(0).parent().props().style.display).to.be.undefined;
+  it('should remove todo be triggered when delete icon be clicked', () => {
     wrapper.find('span').at(0).simulate('click');
 
-    expect(wrapper.find('span').at(0).parent().props().style.display).to.equal('none');
+    expect(removeItemSpy.calledOnce).to.be.true;
   });
 
   it('should make item textDecorationLine style as line-through when click item text', () => {

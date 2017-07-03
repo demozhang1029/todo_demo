@@ -24,9 +24,18 @@ describe('App', () => {
 
   it('should add todo item when addTodo be triggered', () => {
     const givenItem = 'test';
-    wrapper.instance().addTodo(givenItem);
+    wrapper.instance().addItem(givenItem);
 
     expect(wrapper.state().todos[0].text).to.equal(givenItem);
+  });
+
+  it('should remove todo item when removeItem be triggered', () => {
+    const todos = [{text:'content_1'}, {text: 'content_2'}, {text: 'content_3'}];
+    wrapper.setState({todos});
+
+    wrapper.instance().removeItem(0);
+
+    expect(wrapper.state().todos[0].text).to.equal('content_2');
   });
 
 });

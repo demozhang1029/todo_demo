@@ -13,16 +13,21 @@ class App extends Component {
     this.state = {todos: []};
   }
 
-  addTodo(value) {
+  addItem(value) {
     this.state.todos.push({text:value});
+    this.setState({todos: this.state.todos});
+  }
+
+  removeItem(index) {
+    this.state.todos.splice(index, 1);
     this.setState({todos: this.state.todos});
   }
 
   render() {
     return (
       <div>
-        <InputValue updateValue={(value) => this.addTodo(value)}/>
-        <TodoList todos={this.state.todos}/>
+        <InputValue updateValue={(value) => this.addItem(value)}/>
+        <TodoList todos={this.state.todos} removeItem={(index) => this.removeItem(index)}/>
       </div>
     );
   }
