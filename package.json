@@ -7,7 +7,8 @@
     "test": "mocha -w --compilers js:babel-core/register",
     "start": "react-scripts start",
     "selenium-server": "node_modules/.bin/webdriver-manager update && node_modules/.bin/webdriver-manager start",
-    "e2e": "node_modules/.bin/nightwatch"
+    "e2e": "node_modules/.bin/nightwatch",
+    "mock-server": "node_modules/.bin/dyson mocks"
   },
   "author": "Shane",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.0.2",
     "chai-enzyme": "^0.7.1",
+    "dyson": "^1.2.2",
     "enzyme": "^2.9.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
