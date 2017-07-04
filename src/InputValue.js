@@ -24,7 +24,7 @@ class InputValue extends Component {
         <input type="text" placeholder="Add todo item... ..."
                onChange={(e) => this.setState({value: e.target.value})}
                value={this.state.value}/>
-        <button onClick={() => this.updateValue()}>+</button>
+        <button name="addBtn" onClick={() => this.updateValue()}>+</button>
       </div>
     );
   }

@@ -33,7 +33,7 @@ class TodoList extends Component {
         (todo, index) =>
           <li key={index} style={this.itemStyle(todo)}>
             <b onClick={() => this.props.toggleItem(index)}>{todo.text}</b>
-            <span onClick={() => this.props.removeItem(index)}> x</span>
+            <span name="deleteIcon" onClick={() => this.props.removeItem(index)}> x</span>
           </li>
       )}</ul>
     );
