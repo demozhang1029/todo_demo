@@ -5,7 +5,7 @@
 module.exports = {
   'Type in value and click add button' : function (browser) {
     browser
-      .url('http://localhost:3000/')
+      .url('http://localhost:3000/app')
       .waitForElementVisible('body', 1000)
       .setValue('input[type=text]', 'e2e test')
       .waitForElementVisible('button[name=addBtn]', 1000)

@@ -4,10 +4,10 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './App';
+import AppRouter from './AppRouter';
 
 ReactDom.render(
-  <App/>,
+  <AppRouter/>,
   document.getElementById('root')
 );
 
