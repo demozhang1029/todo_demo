@@ -33,13 +33,4 @@ describe('Input Value', () => {
     expect(updateValueSpy.calledWith(givenValue)).to.be.true;
   });
 
-  it('should clean input value when button be clicked', () => {
-    wrapper.setState({value: 'Some value'});
-    expect(wrapper.state().value).to.not.equal('');
-
-    wrapper.find('button').simulate('click');
-
-    expect(wrapper.state().value).to.equal('');
-  });
-
 });
