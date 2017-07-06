@@ -1,35 +1,31 @@
 /**
  * Created by xinzhang on 6/28/17.
  */
-import React, {Component, PropTypes} from 'react';
-import _ from 'lodash';
+import React, {PropTypes} from 'react';
+import {connect} from 'reflux';
+import {Actions as InputActions, InputStore} from './store/InputStore';
 
-class InputValue extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
-  }
+const InputValue = React.createClass({
+  mixins: [
+    connect(InputStore),
+  ],
 
   updateValue() {
-    if (_.isEmpty(this.state.value))
-      return;
     this.props.updateValue(this.state.value);
-    this.setState({value: ''});
-  }
+    InputActions.ResetValue();
+  },
 
   render() {
     return (
       <div>
         <input type="text" placeholder="Add todo item... ..."
-               onChange={(e) => this.setState({value: e.target.value})}
+               onChange={(e) => InputActions.UpdateValue(e.target.value)}
                value={this.state.value}/>
         <button name="addBtn" onClick={() => this.updateValue()}>+</button>
       </div>
     );
   }
-
-}
+});
 
 InputValue.propTypes = {
   updateValue: PropTypes.func.isRequired,
