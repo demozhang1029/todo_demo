@@ -3,23 +3,8 @@
  */
 
 import React, {Component, PropTypes} from 'react';
-import _ from 'lodash';
 
 class TodoList extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {completedIndexs:[]};
-  }
-
-  switchCompletedStatus(index) {
-    const completedIndexs = this.state.completedIndexs;
-    if (!completedIndexs.includes(index))
-      completedIndexs.push(index);
-    else
-      _.remove(completedIndexs, (v) => v === index);
-    this.setState({completedIndexs});
-  }
 
   itemStyle(todo) {
     return {
